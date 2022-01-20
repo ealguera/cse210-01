@@ -11,11 +11,27 @@ def main():
             tic_tac_toe_defautl_values[int(position)-1] = next_player
             i +=1
         else:
-            print('This is not a valid input')
+            print('This is not a valid input value was already used')
             i -= -1
+        winner = check_winner(tic_tac_toe_defautl_values)
+        if winner == True:
+            print(f"{next_player} is the winner")
+            break
+
         next_player = check_next_player(next_player)
-
-
+        
+def check_winner(defaults):
+    winner = False
+    if (defaults[0] == defaults[1] == defaults[2] or
+        defaults[3] == defaults[4] == defaults[5] or
+        defaults[6] == defaults[7] == defaults[8] or
+        defaults[0] == defaults[3] == defaults[6] or
+        defaults[1] == defaults[4] == defaults[7] or
+        defaults[3] == defaults[5] == defaults[8] or
+        defaults[0] == defaults[4] == defaults[8] or
+        defaults[2] == defaults[4] == defaults[6]):
+        winner = True
+    return winner
 def check_next_player(next_player):
     if next_player.lower() == 'x':
         next_player = 'o'
